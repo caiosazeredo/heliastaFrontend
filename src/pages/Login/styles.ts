@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
+    flex: 1;
     height: 100vh;
 `
 export const LeftSlide = styled.div`
@@ -42,8 +43,6 @@ export const TitleDiv = styled.div`
     img{
         width: 48px;
         height: 48px;
-
-        //filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6484%) hue-rotate(68deg) brightness(95%) contrast(90%);
     }
 `
 
