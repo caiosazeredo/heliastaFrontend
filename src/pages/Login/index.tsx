@@ -5,6 +5,7 @@ import imgLogin from "../../assets/imgLogin.svg";
 import imgPesc from "../../assets/imgPesc.svg";
 import imgCapgov from "../../assets/imgCapgov.svg";
 import { Button, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,6 +13,13 @@ import { Button, TextField } from "@mui/material";
 
 
 export const Login = () => {
+    const navigate = useNavigate();
+
+
+    const handleLogin = () => {
+        navigate('/')
+    }
+
     return (
         <Container>
             <LeftSlide>
@@ -39,7 +47,7 @@ export const Login = () => {
                         type="password"
 
                     />
-                    <Button variant="contained" className="buttonStyle">Login</Button>
+                    <Button variant="contained" className="buttonStyle" onClick={handleLogin}>Login</Button>
 
                 </FormDiv>
 
