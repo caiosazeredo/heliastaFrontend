@@ -4,27 +4,33 @@ import { BrowserRouter } from 'react-router-dom'
 import { GlobalStyle } from './themes/global'
 import { Router } from './Router'
 
-import { DrawerMenu } from './components/DrawerMenu'
+import { TabMenu } from './components/TabMenu'
 import { Container } from './styles'
+import { SyntheticEvent, useState } from 'react'
+
+import { TabMenuProvider } from './contexts/TabMenuContext';
 
 
 export function App() {
-
   const user = null
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter>
 
-        <Container>
+      <TabMenuProvider>
+        <BrowserRouter>
 
-          {!user &&
-            <DrawerMenu />
-          }
-          <Router />
-        </Container>
+          <Container>
+            {!user &&
+              <TabMenu />
+            }
+            <Router />
+          </Container>
 
-      </BrowserRouter>
+        </BrowserRouter>
+      </TabMenuProvider>
+
+
       <GlobalStyle />
     </ThemeProvider>
   )
