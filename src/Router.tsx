@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
+import { Settings } from './pages/Settings';
+import { NotFound } from './pages/NotFound';
 /* import { RequireAuth } from './helpers/RequireAuth';
 import { AuthContext } from './helpers/AuthContext'; */
 
@@ -20,17 +22,20 @@ export function Router() {
                 element={<Login />}
             />
 
-
             <Route
                 path="/"
-                /* element={<RequireAuth><Home /></RequireAuth>} */
                 element={<Home />}
             />
 
+            <Route
+                path="/settings"
+                element={<Settings />}
+            />
 
-            {/* <Route path="*"
+            <Route
+                path="*"
                 element={<NotFound />}
-            /> */}
+            />
 
         </Routes>
     )
