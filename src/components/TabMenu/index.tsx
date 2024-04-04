@@ -14,38 +14,10 @@ import logoImage from "../../assets/logo.png";
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
+import Avatar from '@mui/material/Avatar';
+import LogoutIcon from '@mui/icons-material/Logout';
 
-function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
 
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`vertical-tabpanel-${index}`}
-            aria-labelledby={`vertical-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-function a11yProps(index: number) {
-    return {
-        id: `vertical-tab-${index}`,
-        'aria-controls': `vertical-tabpanel-${index}`,
-    };
-}
 
 export const TabMenu = () => {
     const navigate = useNavigate();
@@ -70,28 +42,22 @@ export const TabMenu = () => {
                     sx={{ borderRight: 1, borderColor: 'divider' }}
                 >
                     <Tab 
-                        /* icon={<FolderOutlinedIcon />} 
-                        label="Configurações"  */
                         label={
                             <ItemTab>
                               <FolderOutlinedIcon className='iconStyle'/>
                               <h1>Processos</h1>
                             </ItemTab>
                           }
-                        /* {...a11yProps(1)}  */
                         onClick={() => navigate('/')}
                     />
                     
                     <Tab 
-                        /* icon={<FolderOutlinedIcon />} 
-                        label="Configurações"  */
                         label={
                             <ItemTab>
                               <SettingsOutlinedIcon className='iconStyle'/>
                               <h1>Configurações</h1>
                             </ItemTab>
                           }
-                        {...a11yProps(1)} 
                         onClick={() => navigate('/settings')}
                     />
 
@@ -99,7 +65,9 @@ export const TabMenu = () => {
             </MidleDiv>
 
             <BottomDiv>
-                <h1>bottom</h1>
+                <Avatar sx={{ bgcolor: '#62ADF8', width:24, height:24, fontSize: 12 }}>X</Avatar>
+                <h1>xexeo@cos.ufrj.br</h1>
+                <LogoutIcon onClick={() => navigate('/login')} className='iconLogoutStyle'/>
             </BottomDiv>
         </Container>
     );

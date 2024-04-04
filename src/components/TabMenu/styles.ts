@@ -62,6 +62,22 @@ export const ItemTab = styled.div`
 `
 
 export const BottomDiv = styled.div`
- 
-    background-color: purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    gap: 20px;
+
+    h1{
+        font-size: 14px;
+        color: #353F4E;
+    }
+
+    .iconLogoutStyle{
+        cursor: pointer;
+
+        color: #9CA3AF;
+    }
 `
