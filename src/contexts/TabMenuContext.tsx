@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, ReactNode, SyntheticEvent }
 
 interface AppContextProps {
     valueTabMenuContext: number;
-    handleChangeTabMenuContext: (event: SyntheticEvent, newValue: number) => void;
+    handleChangeTabMenuContext: (event: SyntheticEvent | null, newValue: number) => void;
 }
 
 const TabMenuContext = createContext<AppContextProps | undefined>(undefined);
@@ -10,7 +10,7 @@ const TabMenuContext = createContext<AppContextProps | undefined>(undefined);
 export const TabMenuProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [valueTabMenuContext, setValueTabMenuContext] = useState(0);
 
-    const handleChangeTabMenuContext = (event: SyntheticEvent, newValue: number) => {
+    const handleChangeTabMenuContext = (event: SyntheticEvent | null, newValue: number) => {
         setValueTabMenuContext(newValue);
     };
 
