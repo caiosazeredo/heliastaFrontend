@@ -5,10 +5,11 @@ import { GlobalStyle } from './themes/global'
 import { Router } from './Router'
 
 import { TabMenu } from './components/TabMenu'
-import { Container } from './styles'
+import { Container, Container2 } from './styles'
 import { SyntheticEvent, useState } from 'react'
 
 import { TabMenuProvider } from './contexts/TabMenuContext';
+import { DrawerMenu } from './components/DrawerMenu'
 
 
 export function App() {
@@ -20,12 +21,19 @@ export function App() {
       <TabMenuProvider>
         <BrowserRouter>
 
+        {!user &&
           <Container>
-            {!user &&
-              <TabMenu />
-            }
+            <TabMenu />
+            <DrawerMenu />
             <Router />
           </Container>
+        }
+
+        {user &&
+          <Container2>
+            <Router />
+          </Container2>
+        }
 
         </BrowserRouter>
       </TabMenuProvider>
