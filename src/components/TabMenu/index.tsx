@@ -49,6 +49,7 @@ export const TabMenu = () => {
                             </ItemTab>
                           }
                         onClick={() => navigate('/')}
+                        className='tabStyle'
                     />
                     
                     <Tab 
@@ -59,6 +60,7 @@ export const TabMenu = () => {
                             </ItemTab>
                           }
                         onClick={() => navigate('/settings')}
+                        className='tabStyle'
                     />
 
                 </Tabs>

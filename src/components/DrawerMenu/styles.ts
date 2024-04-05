@@ -3,12 +3,18 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
-    height: 100vh;
-    flex-direction: column;
 
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-bottom: 2px solid #E5E7EB;
+    //box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
-    @media (max-width: 1000px) {
+    padding: 10px 0px;
+
+    .drawerStyle{
+        background-color: red;
+        width: 700px;
+    }
+
+    @media (min-width: 1000px) {
         display: none; 
     }
 `
@@ -39,32 +45,8 @@ export const TopDiv = styled.div`
 
 export const MidleDiv = styled.div`
     flex: 1;
-
-    .tabStyle{
-        display: flex;        
-        align-items: start;
-    }
 `
 
-export const ItemTab = styled.div`
-    display: flex;
-    //flex: 1;
-    //background-color: red;
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-
-    .iconStyle{
-        font-size: 22px;
-    }
-
-    h1{
-        font-size: 10px;
-        text-transform: capitalize;
-    }
-
-`
 
 export const BottomDiv = styled.div`
     display: flex;
@@ -79,7 +61,6 @@ export const BottomDiv = styled.div`
         font-size: 14px;
         color: #353F4E;
     }
-
 
     .iconLogoutStyle{
         cursor: pointer;
