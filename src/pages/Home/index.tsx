@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 
 import { useTabMenuContext } from '../../contexts/TabMenuContext';
+import { Container } from "./styles";
 
 
 
@@ -17,6 +18,8 @@ export const Home = () => {
     },[])
 
     return(
-        <h1>HOME</h1>
+        <Container>
+            <h1>HOME</h1>
+        </Container>
     )
 }
