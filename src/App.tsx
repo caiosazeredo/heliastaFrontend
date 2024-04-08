@@ -6,14 +6,22 @@ import { Router } from './Router'
 
 import { TabMenu } from './components/TabMenu'
 import { Container, Container2 } from './styles'
-import { SyntheticEvent, useState } from 'react'
+import { SyntheticEvent, useContext, useEffect, useState } from 'react'
 
-import { TabMenuProvider } from './contexts/TabMenuContext';
+import { TabMenuProvider } from './helpers/TabMenuContext';
+import { AuthProvider, useAuthContext } from './contexts/AuthContext';
 import { DrawerMenu } from './components/DrawerMenu'
+import { AuthContext } from './helpers/AuthContext'
+
 
 
 export function App() {
-  const user = null
+  const { user } = useContext(AuthContext)
+
+
+  /* useEffect(()=>{
+    console.log('User: ', user)
+  },[user]) */
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -21,19 +29,19 @@ export function App() {
       <TabMenuProvider>
         <BrowserRouter>
 
-        {!user &&
-          <Container>
-            <TabMenu />
-            <DrawerMenu />
-            <Router />
-          </Container>
-        }
+          {user &&
+            <Container>
+              <TabMenu />
+              <DrawerMenu />
+              <Router />
+            </Container>
+          }
 
-        {user &&
-          <Container2>
-            <Router />
-          </Container2>
-        }
+          {!user &&
+            <Container2>
+              <Router />
+            </Container2>
+          }
 
         </BrowserRouter>
       </TabMenuProvider>

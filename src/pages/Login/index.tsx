@@ -6,6 +6,8 @@ import imgPesc from "../../assets/imgPesc.svg";
 import imgCapgov from "../../assets/imgCapgov.svg";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../helpers/AuthContext";
 
 
 
@@ -15,9 +17,31 @@ import { useNavigate } from "react-router-dom";
 export const Login = () => {
     const navigate = useNavigate();
 
+    const { user, signin } = useContext(AuthContext)
 
-    const handleLogin = () => {
-        navigate('/')
+
+    const [email, setEmail] = useState('xexeo@cos.ufrj.br')
+    const [password, setPassword] = useState('')
+
+    useEffect(()=>{
+        if(user){
+            navigate('/')
+        }
+    },[user])
+
+
+    const handleLogin = async() => {
+        if(email && password){
+            const json = await signin(email, password)
+            if(json.error){
+                //Swal.fire(json.error, "", "error");
+                alert(json.error)
+            }else{
+                navigate('/')
+            }
+        }else{
+            alert('Digite os campos solicitados.')
+        }
     }
 
     return (
@@ -37,6 +61,8 @@ export const Login = () => {
                         variant="filled"
                         className="inputStyle"
                         type="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                     />
                     <TextField
                         hiddenLabel
@@ -45,7 +71,8 @@ export const Login = () => {
                         variant="filled"
                         className="inputStyle"
                         type="password"
-
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                     />
                     <Button variant="contained" className="buttonStyle" onClick={handleLogin}>Login</Button>
 

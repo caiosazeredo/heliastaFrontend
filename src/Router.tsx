@@ -5,6 +5,7 @@ import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Settings } from './pages/Settings';
 import { NotFound } from './pages/NotFound';
+import { RequireAuth } from './helpers/RequireAuth';
 /* import { RequireAuth } from './helpers/RequireAuth';
 import { AuthContext } from './helpers/AuthContext'; */
 
@@ -24,12 +25,12 @@ export function Router() {
 
             <Route
                 path="/"
-                element={<Home />}
+                element={<RequireAuth><Home /></RequireAuth>}
             />
 
             <Route
                 path="/settings"
-                element={<Settings />}
+                element={<RequireAuth><Settings /></RequireAuth>}
             />
 
             <Route

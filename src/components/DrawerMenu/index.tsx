@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useContext, useState } from "react";
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import ListItem from '@mui/material/ListItem';
@@ -18,13 +18,16 @@ import { useNavigate } from 'react-router-dom';
 import { BottomDiv, Container, MidleDiv, TopDiv } from './styles';
 
 import logoImage from "../../assets/logo.png";
+import { AuthContext } from "../../helpers/AuthContext";
 
 
 
 
 export const DrawerMenu = () => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const navigate = useNavigate();
+    const {signout} = useContext(AuthContext)
+
 
 
     const toggleDrawer = (newOpen: boolean) => () => {
@@ -77,7 +80,7 @@ export const DrawerMenu = () => {
                             }
                         >
                             <ListItemIcon>
-                                <SettingsOutlinedIcon />
+                                <SettingsOutlinedIcon onClick={signout}/>
                             </ListItemIcon>
                             <ListItemText primary={'Configuração'} />
                         </ListItemButton>

@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-import { useTabMenuContext } from '../../contexts/TabMenuContext';
+import { useTabMenuContext } from '../../helpers/TabMenuContext';
 import { Container } from "./styles";
 
 

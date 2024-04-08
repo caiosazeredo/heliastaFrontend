@@ -1,11 +1,11 @@
-import { useState, SyntheticEvent } from 'react';
+import { useState, SyntheticEvent, useContext } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useNavigate } from "react-router-dom";
 
-import { useTabMenuContext } from '../../contexts/TabMenuContext';
+import { useTabMenuContext } from '../../helpers/TabMenuContext';
 
 import { BottomDiv, Container, ItemTab, MidleDiv, TopDiv } from "./styles"
 
@@ -16,13 +16,14 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
 import Avatar from '@mui/material/Avatar';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { AuthContext } from '../../helpers/AuthContext';
 
 
 
 export const TabMenu = () => {
     const navigate = useNavigate();
     const { valueTabMenuContext, handleChangeTabMenuContext } = useTabMenuContext();
-
+    const {signout} = useContext(AuthContext)
 
 
     return (
@@ -69,7 +70,7 @@ export const TabMenu = () => {
             <BottomDiv>
                 <Avatar sx={{ bgcolor: '#62ADF8', width:24, height:24, fontSize: 12 }}>X</Avatar>
                 <h1>xexeo@cos.ufrj.br</h1>
-                <LogoutIcon onClick={() => navigate('/login')} className='iconLogoutStyle'/>
+                <LogoutIcon onClick={signout} className='iconLogoutStyle'/>
             </BottomDiv>
         </Container>
     );
