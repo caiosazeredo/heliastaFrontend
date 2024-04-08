@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useTabMenuContext } from '../../contexts/TabMenuContext';
 
 import { Container, Content, ContentSectionDiv, HeaderButtonsDiv, HeaderDiv, ItemContentSectionDiv, LabelItem, LabelItemContentSectionDiv, SectionDiv, SubTitleSection, TitleItem, TitleItemContentSectionDiv, TitleSection, TitleSectionDiv } from "./styles";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 
 
@@ -33,6 +33,7 @@ export const Settings = () => {
         'Quais os pedidos formulados no recurso?',
         'Há contrarrazões e quais são os argumentos relevantes do recurso?'
     ])
+
     const [answers, setAnswers] = useState([
         'Você deverá descobrir qual é o recurso desse processo. Existem somente dois tipos de recursos: Recurso extraordinário ou agravo. O recurso extraordinário é um recurso para buscar uma questão constitucional que foi citado ao longo do processo, mas que apenas pode ser resolvida pelo Supremo Tribunal Federal. O agravo questiona as razões pelas quais o recurso foi negado. Normalmente essa informação ficará no documento mais recente e após alguma frase do tipo "Interpor o Presente". Pode ser que o nome do arquivo tenha uma dica do tipo do recurso, como por exemplo "agravo.pdf" ou "re.pdf". Você deverá se limitar a responder somente se é um recurso extraordinário ou agravo, ou seja, não poderá explicar a razão da resposta ou mencionar o arquivo utilizado.',
         'Você deverá descobrir qual é a pessoa e o tribunal julgador mencionado pelo documento de agravo ou recurso extraordinário. Essa informação estará no inicio do documento e normalmente ela ficará no documento mais recente. Se esse processo for um recurso extraordinário, essa informação poderá estar no arquivo nomeado com a palavra re, como exemplo "re.pdf". No caso de um agravo, essa informação poderá estar no arquivo nomeado com a palavra agravo, como exemplo "agravo.pdf".',
@@ -47,31 +48,33 @@ export const Settings = () => {
         'Existem contrarrazões, ou seja, o representante da outra parte do processo apresentou argumentos contrários ao recurso extrardinário ou agravo? Essa informação normalmente está em um documento de contrarrazões ou será descrita pelo relator ou outro julgador dentro do acordão. O nome do arquivo poderá ter uma dica sobre qual documento deverá ser buscado.'
     ])
 
+    const [inputsAnswers, setInputsAnswers] = useState([
+        'Você deverá descobrir qual é o recurso desse processo. Existem somente dois tipos de recursos: Recurso extraordinário ou agravo. O recurso extraordinário é um recurso para buscar uma questão constitucional que foi citado ao longo do processo, mas que apenas pode ser resolvida pelo Supremo Tribunal Federal. O agravo questiona as razões pelas quais o recurso foi negado. Normalmente essa informação ficará no documento mais recente e após alguma frase do tipo "Interpor o Presente". Pode ser que o nome do arquivo tenha uma dica do tipo do recurso, como por exemplo "agravo.pdf" ou "re.pdf". Você deverá se limitar a responder somente se é um recurso extraordinário ou agravo, ou seja, não poderá explicar a razão da resposta ou mencionar o arquivo utilizado.',
+        'Você deverá descobrir qual é a pessoa e o tribunal julgador mencionado pelo documento de agravo ou recurso extraordinário. Essa informação estará no inicio do documento e normalmente ela ficará no documento mais recente. Se esse processo for um recurso extraordinário, essa informação poderá estar no arquivo nomeado com a palavra re, como exemplo "re.pdf". No caso de um agravo, essa informação poderá estar no arquivo nomeado com a palavra agravo, como exemplo "agravo.pdf".',
+        'Você deverá informar se houve uma reforma ou confirmação da decisão anterior. Normalmente a decisão anterior será citada no acordão recorrido no recurso extraordinário ou no agravo. Essa decisão, normalmente, será uma sentença. O acordão recorrido do recurso extraordinário será a decisão anterior ao recurso. No caso do agravo, será o acordão que negou o andamento do recurso. A informação estará localizada no arquivo do acordão, como exemplo "acordao.pdf", na parte nomeada "Acordão". Não estará localizado no arquivo do agravo, normalmente é um arquivo nomeado como "agravo.pdf". Você deverá se limitar a responder somente a pergunta sem mencionar o arquivo utilizado.',
+        'O acórdão recorrido foi proferido por unanimidade de votos ou por maioria? A informação estará localizada no arquivo do acordão, como exemplo "acordao.pdf", na parte nomeada "Acordão". Não estará localizado no arquivo do agravo, normalmente é um arquivo nomeado como "agravo.pdf". Você deverá se limitar a responder somente a pergunta sem mencionar o arquivo utilizado.',
+        'Quais são os fundamentos utilizados no acordão que foram apresentados pelo relator? Normalmente essa informação ficará após o relatório dentro do acordão. A informação estará localizada no arquivo do acordão, como exemplo "acordao.pdf", na parte nomeada "Acordão". Não estará localizado no arquivo do agravo, normalmente é um arquivo nomeado como "agravo.pdf". Você deverá se limitar a responder somente a pergunta sem mencionar o arquivo utilizado.',
+        'Qual é a ementa do acordão? Normalmente essa informação ficará dentro do documento do acordão entitulada "Ementa". Você deverá transcrever a ementa na sua resposta.',
+        'Qual foi o juízo de admissibilidade do recurso extraordinário, ou seja, se foi admitido ou denegado (inadmissão)? Além disso, quais foram os fundamentos utilizado para o juízo, ou seja, quais as razões que foram utilizados para ser adminitido ou denegado? Por exemplo, poderia ser uma matéria infraconstitucional, súmula 279 ou outros. Essa informação, normalmente, está localizada dentro do documento acordão. Esse documento poderá possuir o nome dentro do nome do arquivo, exemplo "acordao.pdf".',
+        'Você deverá informar qual é o dispositivo constitucional que foi citado no recurso extraordinário? Esses dispositivos podem ser as alineas a, b, c ou d do Artigo 102 enciso III da Constitucional Federal. Essa informação, normalmente, está localizada dentro do recurso extraordinário. Esse documento poderá possuir o nome dentro do nome do arquivo, exemplo "recurso-extraordinario.pdf".',
+        'Você deverá informar qual é o dispositivo constitucional que foi citado no recurso extraordinário? Esses dispositivos podem ser as alineas a, b, c ou d do Artigo 102 enciso III da Constitucional Federal. Caso seja utilizado a alinea A, quais foram os dispositivos/normas/artigos indicados como violados na Constituição? Quais foram os argumentos relevantes do recurso? Essa informação estará após ao fundamento. Pode ser que o nome do arquivo tenha uma dica do tipo do recurso, como por exemplo "agravo.pdf" ou "re.pdf".',
+        'Quais os pedidos indicados pelo advogado no final do recurso extraordinario ou do agravo? Pode ser que o nome do arquivo tenha uma dica do tipo do recurso, como por exemplo "agravo.pdf" ou "re.pdf".',
+        'Existem contrarrazões, ou seja, o representante da outra parte do processo apresentou argumentos contrários ao recurso extrardinário ou agravo? Essa informação normalmente está em um documento de contrarrazões ou será descrita pelo relator ou outro julgador dentro do acordão. O nome do arquivo poderá ter uma dica sobre qual documento deverá ser buscado.'
+    ])
 
-    //inputs
 
-
-
-    //Passo a passo dessa pagina:
-    //pegar as informações do banco de dados
-    //criar as labels e inputs
-    //setar as labels e inputs com essas variaveis do banco de dados
-    //logica para mostrar sempre a labels e se editar mostrar os inputs
-    //salvar, salvar no banco de dados e nas labels
-    //cancelar, os inputs recebem os valores do labels
-
-
-
-
-    //quando tiver as informações de 
+    
     const handleActiveEditingConfig = () => {
         setEditingEnabled(true)
     }
     const handleCancelEditingConfig = () => {
         setEditingEnabled(false)
+        setInputsAnswers(answers)
     }
     const handleSaveEditingConfig = () => {
         setEditingEnabled(false)
+        setAnswers(inputsAnswers)
+        //salvar no banco de dados
     }
 
 
@@ -164,37 +167,6 @@ export const Settings = () => {
 
 
                 {/* 3 */}
-                {/* <SectionDiv>
-                    <TitleSectionDiv>
-                        <TitleSection>Prompts das Questões</TitleSection>
-                        <SubTitleSection>Cada prompt de todas as questões do sumário.</SubTitleSection>
-                    </TitleSectionDiv>
-
-
-                    <ContentSectionDiv>
-                        
-                        <ItemContentSectionDiv>
-                            <TitleItemContentSectionDiv>
-                                <TitleItem>questao1</TitleItem>
-                            </TitleItemContentSectionDiv>
-
-                            <LabelItemContentSectionDiv>
-                                <LabelItem>resposta1</LabelItem>
-                            </LabelItemContentSectionDiv>
-                        </ItemContentSectionDiv>
-                        
-                        <ItemContentSectionDiv>
-                            <TitleItemContentSectionDiv>
-                                <TitleItem>Questao2</TitleItem>
-                            </TitleItemContentSectionDiv>
-
-                            <LabelItemContentSectionDiv>
-                                <LabelItem>resposta 2</LabelItem>
-                            </LabelItemContentSectionDiv>
-                        </ItemContentSectionDiv>
-
-                    </ContentSectionDiv>
-                </SectionDiv> */}
                 <SectionDiv>
                     <TitleSectionDiv>
                         <TitleSection>Prompts das Questões</TitleSection>
@@ -209,7 +181,25 @@ export const Settings = () => {
                                 </TitleItemContentSectionDiv>
 
                                 <LabelItemContentSectionDiv>
-                                    <LabelItem>{answers[index]}</LabelItem>
+                                    {!editingEnabled &&
+                                        <LabelItem>{answers[index]}</LabelItem>
+                                    }
+                                    {editingEnabled &&
+                                        <TextField
+                                            id="outlined-multiline-static"
+                                            label=""
+                                            multiline
+                                            placeholder="Digite a sua resposta"
+                                            rows={8}
+                                            fullWidth
+                                            value={inputsAnswers[index]}
+                                            onChange={(e) => {
+                                                const newInputsAnswers = [...inputsAnswers];
+                                                newInputsAnswers[index] = e.target.value;
+                                                setInputsAnswers(newInputsAnswers);
+                                            }}
+                                        />
+                                    }
                                 </LabelItemContentSectionDiv>
                             </ItemContentSectionDiv>
                         ))}
