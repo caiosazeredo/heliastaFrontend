@@ -16,7 +16,7 @@ export const Container = styled.div`
 
 export const HeaderDiv = styled.div`
     border-bottom: 2px solid #E5E7EB;
-    padding: 15px 30px;
+    padding: 15px 35px;
     
     align-items: center;
 
@@ -34,6 +34,8 @@ export const HeaderDiv = styled.div`
         font-size: 14px;
         text-transform: capitalize;
     }
+
+    min-height: 70px;
 `
 
 export const HeaderButtonsDiv = styled.div`
