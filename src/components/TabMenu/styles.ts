@@ -48,8 +48,6 @@ export const MidleDiv = styled.div`
 
 export const ItemTab = styled.div`
     display: flex;
-    //flex: 1;
-    //background-color: red;
     align-items: center;
     justify-content: center;
 
@@ -60,7 +58,7 @@ export const ItemTab = styled.div`
     }
 
     h1{
-        font-size: 10px;
+        font-size: 14px;
         text-transform: capitalize;
     }
 

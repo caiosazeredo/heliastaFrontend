@@ -26,7 +26,7 @@ import { AuthContext } from "../../helpers/AuthContext";
 export const DrawerMenu = () => {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
-    const {signout} = useContext(AuthContext)
+    const { signout } = useContext(AuthContext)
 
 
 
@@ -80,7 +80,7 @@ export const DrawerMenu = () => {
                             }
                         >
                             <ListItemIcon>
-                                <SettingsOutlinedIcon onClick={signout}/>
+                                <SettingsOutlinedIcon onClick={signout} />
                             </ListItemIcon>
                             <ListItemText primary={'Configuração'} />
                         </ListItemButton>
@@ -92,11 +92,11 @@ export const DrawerMenu = () => {
                     <Avatar sx={{ bgcolor: '#62ADF8', width: 24, height: 24, fontSize: 12 }}>X</Avatar>
                     <h1>xexeo@cos.ufrj.br</h1>
                     <LogoutIcon onClick={
-                                () => {
-                                    setOpen(false)
-                                    navigate('/login')
-                                }
-                            } className='iconLogoutStyle' />
+                        () => {
+                            setOpen(false)
+                            navigate('/login')
+                        }
+                    } className='iconLogoutStyle' />
                 </BottomDiv>
 
             </Drawer>
